@@ -1,0 +1,7 @@
+#Env
+.gradle
+.idea
+
+#Build
+build
+out
