@@ -2,23 +2,17 @@ package com.joons.jwt.share;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
 import java.util.Date;
 
+@Service
 public class JwtContext {
-    private static JwtContext jwtContext;
-    private Key signingKey;
 
-    private JwtContext() {}
-
-    public static JwtContext getInstance() {
-        //Ignore sync
-        if(jwtContext == null)
-            jwtContext = new JwtContext();
-        return jwtContext;
-    }
+    private static Key signingKey;
 
     public String makeJwt(String id) {
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
