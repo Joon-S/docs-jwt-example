@@ -2,6 +2,7 @@ package com.joons.jwt.api;
 
 import com.joons.jwt.share.JwtContext;
 import com.joons.jwt.share.JwtElement;
+import com.joons.jwt.share.JwtVO;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,10 @@ public class AuthController {
     JwtContext context;
 
     @RequestMapping(value = "/request", method = RequestMethod.GET)
-    public String getRequest(@RequestParam(required = true) String id) {
+    public JwtVO getRequest(@RequestParam(required = true) String id) {
         String jwt = context.makeJwt(id);
-        return jwt;
+        JwtVO result = new JwtVO(jwt);
+        return result;
     }
 
     @RequestMapping(value = "/response", method = RequestMethod.GET)
